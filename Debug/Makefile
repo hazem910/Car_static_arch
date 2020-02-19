@@ -33,6 +33,10 @@ LINKER_SCRIPT_DEP:=
 
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
+../Macl \
+../Hall \
+../APP \
+../Common \
 ../src/ \
 ../src/ASF/ \
 ../src/ASF/common/ \
@@ -52,16 +56,16 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../Car_sm.c \
-../DIO.c \
-../Motor.c \
-../Steering.c \
-../Ultrasonic.c \
-../ICU.c \
-../PWM.c \
-../softwaredelay.c \
-../Timer.c \
-../Us.c \
+../APP/Car_sm.c \
+../APP/Steering.c \
+../Common/softwaredelay.c \
+../Hall/Motor.c \
+../Hall/Us.c \
+../Macl/DIO.c \
+../Macl/ICU.c \
+../Macl/PWM.c \
+../Macl/Timer.c \
+../Main.c \
 ../src/ASF/mega/boards/stk600/rcx_x/init.c
 
 
@@ -72,60 +76,60 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-Car_sm.o \
-DIO.o \
-Motor.o \
-Steering.o \
-Ultrasonic.o \
-ICU.o \
-PWM.o \
-softwaredelay.o \
-Timer.o \
-Us.o \
+APP/Car_sm.o \
+APP/Steering.o \
+Common/softwaredelay.o \
+Hall/Motor.o \
+Hall/Us.o \
+Macl/DIO.o \
+Macl/ICU.o \
+Macl/PWM.o \
+Macl/Timer.o \
+Main.o \
 src/ASF/mega/boards/stk600/rcx_x/init.o
 
 OBJS_AS_ARGS +=  \
-Car_sm.o \
-DIO.o \
-Motor.o \
-Steering.o \
-Ultrasonic.o \
-ICU.o \
-PWM.o \
-softwaredelay.o \
-Timer.o \
-Us.o \
+APP/Car_sm.o \
+APP/Steering.o \
+Common/softwaredelay.o \
+Hall/Motor.o \
+Hall/Us.o \
+Macl/DIO.o \
+Macl/ICU.o \
+Macl/PWM.o \
+Macl/Timer.o \
+Main.o \
 src/ASF/mega/boards/stk600/rcx_x/init.o
 
 C_DEPS +=  \
-Car_sm.d \
-DIO.d \
-Motor.d \
-Steering.d \
-Ultrasonic.d \
-ICU.d \
-PWM.d \
-softwaredelay.d \
-Timer.d \
-Us.d \
+APP/Car_sm.d \
+APP/Steering.d \
+Common/softwaredelay.d \
+Hall/Motor.d \
+Hall/Us.d \
+Macl/DIO.d \
+Macl/ICU.d \
+Macl/PWM.d \
+Macl/Timer.d \
+Main.d \
 src/ASF/mega/boards/stk600/rcx_x/init.d
 
 C_DEPS_AS_ARGS +=  \
-Car_sm.d \
-DIO.d \
-Motor.d \
-Steering.d \
-Ultrasonic.d \
-ICU.d \
-PWM.d \
-softwaredelay.d \
-Timer.d \
-Us.d \
+APP/Car_sm.d \
+APP/Steering.d \
+Common/softwaredelay.d \
+Hall/Motor.d \
+Hall/Us.d \
+Macl/DIO.d \
+Macl/ICU.d \
+Macl/PWM.d \
+Macl/Timer.d \
+Main.d \
 src/ASF/mega/boards/stk600/rcx_x/init.d
 
-OUTPUT_FILE_PATH +=Car_Static_ARC.elf
+OUTPUT_FILE_PATH +=Car_static_arch.elf
 
-OUTPUT_FILE_PATH_AS_ARGS +=Car_Static_ARC.elf
+OUTPUT_FILE_PATH_AS_ARGS +=Car_static_arch.elf
 
 ADDITIONAL_DEPENDENCIES:=
 
@@ -159,6 +163,34 @@ LINKER_SCRIPT_DEP+=
 
 
 
+
+APP/%.o: ../APP/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Common/%.o: ../Common/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Hall/%.o: ../Hall/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Macl/%.o: ../Macl/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
 
 ./%.o: .././%.c
 	@echo Building file: $<
@@ -199,13 +231,13 @@ all: $(OUTPUT_FILE_PATH) $(ADDITIONAL_DEPENDENCIES)
 $(OUTPUT_FILE_PATH): $(OBJS) $(USER_OBJS) $(OUTPUT_FILE_DEP) $(LIB_DEP) $(LINKER_SCRIPT_DEP)
 	@echo Building target: $@
 	@echo Invoking: AVR/GNU Linker : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE) -o$(OUTPUT_FILE_PATH_AS_ARGS) $(OBJS_AS_ARGS) $(USER_OBJS) $(LIBS) -Wl,-Map="Car_Static_ARC.map" -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\gcc\dev\atmega32" -Wl,--relax  
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE) -o$(OUTPUT_FILE_PATH_AS_ARGS) $(OBJS_AS_ARGS) $(USER_OBJS) $(LIBS) -Wl,-Map="Car_static_arch.map" -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\gcc\dev\atmega32" -Wl,--relax  
 	@echo Finished building target: $@
-	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O ihex -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures  "Car_Static_ARC.elf" "Car_Static_ARC.hex"
-	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -j .eeprom  --set-section-flags=.eeprom=alloc,load --change-section-lma .eeprom=0  --no-change-warnings -O ihex "Car_Static_ARC.elf" "Car_Static_ARC.eep" || exit 0
-	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objdump.exe" -h -S "Car_Static_ARC.elf" > "Car_Static_ARC.lss"
-	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O srec -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures "Car_Static_ARC.elf" "Car_Static_ARC.srec"
-	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-size.exe" "Car_Static_ARC.elf"
+	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O ihex -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures  "Car_static_arch.elf" "Car_static_arch.hex"
+	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -j .eeprom  --set-section-flags=.eeprom=alloc,load --change-section-lma .eeprom=0  --no-change-warnings -O ihex "Car_static_arch.elf" "Car_static_arch.eep" || exit 0
+	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objdump.exe" -h -S "Car_static_arch.elf" > "Car_static_arch.lss"
+	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O srec -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures "Car_static_arch.elf" "Car_static_arch.srec"
+	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-size.exe" "Car_static_arch.elf"
 	
 	
 
@@ -217,5 +249,5 @@ $(OUTPUT_FILE_PATH): $(OBJS) $(USER_OBJS) $(OUTPUT_FILE_DEP) $(LIB_DEP) $(LINKER
 clean:
 	-$(RM) $(OBJS_AS_ARGS) $(EXECUTABLES)  
 	-$(RM) $(C_DEPS_AS_ARGS)   
-	rm -rf "Car_Static_ARC.elf" "Car_Static_ARC.a" "Car_Static_ARC.hex" "Car_Static_ARC.lss" "Car_Static_ARC.eep" "Car_Static_ARC.map" "Car_Static_ARC.srec" "Car_Static_ARC.usersignatures"
+	rm -rf "Car_static_arch.elf" "Car_static_arch.a" "Car_static_arch.hex" "Car_static_arch.lss" "Car_static_arch.eep" "Car_static_arch.map" "Car_static_arch.srec" "Car_static_arch.usersignatures"
 	
