@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1582096165 source:f:\car_static_arc\car_static_arc\uint_testing\dio_ts\dio.c
+	"DIO.h"
+
+1582426018 f:\car_static_arc\car_static_arc\uint_testing\dio_ts\dio.h
+	"..\common_macros.h"
+	"..\std_types.h"
+	"..\registers.h"
+
+1582210181 f:\car_static_arc\car_static_arc\uint_testing\common_macros.h
+
+1582210181 f:\car_static_arc\car_static_arc\uint_testing\std_types.h
+
+1582212372 f:\car_static_arc\car_static_arc\uint_testing\registers.h
+	"std_types.h"
+	"common_macros.h"
+
+1385316878 source:f:\car_static_arc\car_static_arc\uint_testing\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1582211398 source:f:\car_static_arc\car_static_arc\uint_testing\registers.c
+	"registers.h"
+
+1582218581 source:f:\car_static_arc\car_static_arc\uint_testing\test.c
+	"DIO_TS/DIO.h"
+	<stdio.h>
+

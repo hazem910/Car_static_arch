@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1582221799 source:f:\car_static_arc\car_static_arc\uinttestingpwm\pwm_ts\pwm.c
+	"PWM.h"
+
+1582428716 f:\car_static_arc\car_static_arc\uinttestingpwm\pwm_ts\pwm.h
+	"..\common_macros.h"
+	"..\std_types.h"
+	"..\registers.h"
+
+1582210181 f:\car_static_arc\car_static_arc\uinttestingpwm\common_macros.h
+
+1582219221 f:\car_static_arc\car_static_arc\uinttestingpwm\registers.h
+	"std_types.h"
+	"common_macros.h"
+
+1582210181 f:\car_static_arc\car_static_arc\uinttestingpwm\std_types.h
+
+1582222176 source:f:\car_static_arc\car_static_arc\uinttestingpwm\test.c
+	<stdio.h>
+	"PWM_TS/PWM.h"
+
+1582428560 source:f:\car_static_arc\car_static_arc\uinttestingpwm\registers.c
+	"registers.h"
+
